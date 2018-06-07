@@ -99,3 +99,7 @@ ENV/
 
 # mypy
 .mypy_cache/
+
+# my files
+data/yolo.h5
+yolov3.weights
