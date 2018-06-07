@@ -102,4 +102,4 @@ ENV/
 
 # my files
 data/yolo.h5
-yolov3.weights
+data/yolov3.weights
