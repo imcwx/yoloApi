@@ -198,16 +198,11 @@ def demo_test(yolo, all_classes):
 
 
 def test_one(yolo, all_classes, data):
+    final_outp = []
     if data:
-        # try:
-        #     url = data["url"]
-        # except KeyError:
-        #     # url = "http://cyprusexcursion.com/wp-content/uploads/2016/04/trip-sharing-cyprus.jpg"
-        #     url = "https://upload.wikimedia.org/wikipedia/commons/0/09/Shibuya_Station_Crossing.JPG"
         url = data["url"]
         image = get_image_from_url(url)
-        outp = detect_image_raw(image, yolo, all_classes)
-
+        final_outp = detect_image_raw(image, yolo, all_classes)
     else:
         for (root, dirs, files) in os.walk('images/test'):
             if files:
@@ -215,21 +210,19 @@ def test_one(yolo, all_classes, data):
                     print(f)
                     path = os.path.join(root, f)
                     image = cv2.imread(path)
-                    outp = detect_image_raw(image, yolo, all_classes)
-                    # cv2.imwrite('images/res/' + f, image)
-    return outp
+                    final_outp = detect_image_raw(image, yolo, all_classes)
+    return final_outp
 
 
 def test_list(yolo, all_classes, list_data):
+    final_outp = []
     if list_data:
-        try:
-            url = list_data[0]["url"]
-        except KeyError:
-            # url = "http://cyprusexcursion.com/wp-content/uploads/2016/04/trip-sharing-cyprus.jpg"
-            url = "https://upload.wikimedia.org/wikipedia/commons/0/09/Shibuya_Station_Crossing.JPG"
-        image = get_image_from_url(url)
-        outp = detect_image_raw(image, yolo, all_classes)
-
+        for data in list_data:
+            url = data["url"]
+            image = get_image_from_url(url)
+            single_outp = detect_image_raw(image, yolo, all_classes)   # single_outp is a list
+            return_data = {"url": url, "detections": single_outp}
+            final_outp.append(return_data)
     else:
         for (root, dirs, files) in os.walk('images/test'):
             if files:
@@ -237,9 +230,10 @@ def test_list(yolo, all_classes, list_data):
                     print(f)
                     path = os.path.join(root, f)
                     image = cv2.imread(path)
-                    outp = detect_image_raw(image, yolo, all_classes)
-                    # cv2.imwrite('images/res/' + f, image)
-    return outp
+                    single_outp = detect_image_raw(image, yolo, all_classes)
+                    return_data = {"url": f, "detections": single_outp}
+                    final_outp.append(return_data)
+    return final_outp
 
 
 def setup():
