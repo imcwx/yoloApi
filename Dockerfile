@@ -1,7 +1,7 @@
 FROM tensorflow/tensorflow:latest-gpu-py3
 
 RUN apt-get update -y && apt-get upgrade -y && apt-get install -y python-dev python-pip python3-dev python3-pip git libsm6 libxext6 libxrender-dev \
-        && pip3 install opencv-python && pip3 install Keras flask
+        && pip3 install opencv-python && pip3 install Keras flask requests
 
 RUN mkdir /yoloApi
 COPY ./yoloApi /yoloApi
