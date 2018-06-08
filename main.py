@@ -2,6 +2,7 @@ from flask import Flask, request, jsonify
 import demo
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
+
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.7
 set_session(tf.Session(config=config))
@@ -70,5 +71,4 @@ if __name__ == '__main__':
     print(("* Loading Keras model and Flask starting server..."
            "please wait until server has fully started"))
     yolo, all_classes = demo.setup()
-    graph = tf.get_default_graph()
     app.run(debug=True, host='0.0.0.0',port=8888)
