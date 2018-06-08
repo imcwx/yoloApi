@@ -8,7 +8,7 @@ import time
 
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
-config.gpu_options.per_process_gpu_memory_fraction = 0.3
+config.gpu_options.per_process_gpu_memory_fraction = 0.7
 set_session(tf.Session(config=config))
 
 class YOLO:
