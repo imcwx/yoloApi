@@ -5,7 +5,7 @@ RUN apt-get update -y
 
 RUN apt-get install -y python-dev python-pip python3-dev python3-pip git nano libsm6 libxext6 libxrender-dev \
         && pip3 install --upgrade pip && pip3 install Keras flask requests opencv-python
- 
+
 RUN mkdir /yoloApi
 COPY ./yoloApi /yoloApi
 WORKDIR /yoloApi

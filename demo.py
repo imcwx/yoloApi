@@ -239,7 +239,8 @@ def test_list(yolo, all_classes, list_data):
 def setup():
     # global yolo, all_classes
     yolo = YOLO(0.6, 0.5)
-    file = 'data/coco_classes.txt'
+    file = 'data/VTAS_YoloV3_coco_classes.txt'
+    # file = 'data/coco_classes.txt'
     all_classes = get_classes(file)
     return yolo, all_classes
 
@@ -276,7 +277,8 @@ def main_list(list_data):
 
 if __name__ == '__main__':
     yolo = YOLO(0.6, 0.5)
-    file = 'data/coco_classes.txt'
+    file = 'data/VTAS_YoloV3_coco_classes.txt'
+    # file = 'data/coco_classes.txt'
     all_classes = get_classes(file)
 
     # demo_test
