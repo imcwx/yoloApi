@@ -98,10 +98,6 @@ def reformat_result(boxes, scores, classes, all_classes):
         bottom = y+h
 
         cls = all_classes[cl]
-
-        # new_box = [top, left, right, bottom]
-        # print('class: {0}, score: {1:.2f}'.format(all_classes[cl], score))
-        # print('box coordinate top,left,right,bottom: {0}'.format(new_box))
         res = {"BoundingBox": {"Bottom": str(bottom), "Left": str(left), "Right": str(right), "Top": str(top)},
                "Class": cls, "Confidence": str(score)}
         outp.append(res)
@@ -154,7 +150,9 @@ def detect_image_raw(image, yolo, all_classes):
 
     if boxes is not None:
         result = reformat_result(boxes, scores, classes, all_classes)
-    #     draw(image, boxes, scores, classes, all_classes)
+        # draw(image, boxes, scores, classes, all_classes)
+    else:
+        result = [] 
 
     return result
 
